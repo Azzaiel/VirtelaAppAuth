@@ -89,20 +89,19 @@ myApp.controller('appPermissionControler', function ($scope, $filter, $route, ac
         roleSelected = roleSelected[0];
         if (roleSelected) {
 
-            $scope.appPermissionPromise = accountFactory.getAppRolePermission($scope.filter.vapplication.id, 0);
-            $scope.appPermissionPromise.then(function (appPermission) {
-                if (appPermission.data) {
-                    $scope.appPermissionLov = commonService.removeFormArray(appPermission.data, $scope.rolePermissionLov);
+            $scope.rolePermissionPromise = accountFactory.getAppRolePermission($scope.filter.vapplication.id, roleSelected.id);
+            $scope.rolePermissionPromise.then(function (rolePermissions) {
+                if (rolePermissions.data) {
+                    $scope.rolePermissionLov = rolePermissions.data;
                 }
-                $scope.rolePermissionPromise = accountFactory.getAppRolePermission($scope.filter.vapplication.id, roleSelected.id);
-                $scope.rolePermissionPromise.then(function (rolePermissions) {
-                    if (rolePermissions.data) {
-                        $scope.rolePermissionLov = rolePermissions.data;
-
+                $scope.appPermissionPromise = accountFactory.getAppRolePermission($scope.filter.vapplication.id, 0);
+                $scope.appPermissionPromise.then(function (appPermission) {
+                    if (appPermission.data) {
+                        $scope.appPermissionLov = commonService.removeFormArray(appPermission.data, $scope.rolePermissionLov);
                     }
+
                 });
             });
-
         }
 
     }
@@ -155,7 +154,30 @@ myApp.controller('appPermissionControler', function ($scope, $filter, $route, ac
         }
     }
 
-    $scope.resetRoloPermission = function () {
+    $scope.permissionSyncPromise = null;
+
+    $scope.submitRolePermission = function () {
+        roleId = null;
+        roleSelected = $scope.gridApi.selection.getSelectedRows();
+        roleSelected = roleSelected[0];
+        if (roleSelected) {
+            roleId = roleSelected.id;
+        }
+
+        appId = null;
+        if ($scope.filter && $scope.filter.vapplication) {
+            appId = $scope.filter.vapplication.id;
+        }
+
+        if (roleId && appId && $scope.rolePermissionLov) {
+            $scope.permissionSyncPromise = accountFactory.syncRolePermissionList(appId, roleId, $scope.rolePermissionLov);
+            $scope.permissionSyncPromise.then(function (resMsg) {
+                $scope.populatePermissionList();
+            });
+
+        } else {
+            alert("Invalid Parameters");
+        }
 
     }
 

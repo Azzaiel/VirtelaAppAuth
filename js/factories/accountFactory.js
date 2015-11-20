@@ -3,6 +3,7 @@ myApp.factory('accountFactory', function ($http, serverConfigService) {
     var WS_METHOD_GET_APPLICATIONS = '/account/v1.0/applications';
     var WS_METHOD_GET_ROLE_BY_APP_ID = '/account/v1.0/roles/search/find_by_application_name';
     var WS_METHOD_GET_PERMISSION_BY_APP_ROLE = '/account/v1.0/permissions/search/find_by_app_role/';
+    var WS_METHOD_SYNC_ROLE_PERMISSION = '/account/v1.0/role/permission/sync/';
 
     var factory = null;
 
@@ -31,6 +32,17 @@ myApp.factory('accountFactory', function ($http, serverConfigService) {
             var promise = $http({
                 url: serverConfigService.getAccountWsBasePath() + WS_METHOD_GET_PERMISSION_BY_APP_ROLE + appId,
                 method: 'GET',
+                params: {
+                    'role_id': roleId
+                }
+            });
+            return promise;
+        },
+        syncRolePermissionList: function(appId, roleId, rolePermissionList) {
+            var promise = $http({
+                url: serverConfigService.getAccountWsBasePath() + WS_METHOD_SYNC_ROLE_PERMISSION + appId,
+                method: 'POST',
+                data: rolePermissionList, 
                 params: {
                     'role_id': roleId
                 }

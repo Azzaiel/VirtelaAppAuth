@@ -23,7 +23,7 @@
         </div>
 
         <div class="Grid Grid--gutters Grid--flexCells u-nested-full">
-            <div class="Grid-cell">
+            <div cg-busy="{promise:permissionSyncPromise}"  class="Grid-cell">
                 <div class="card-flex">
                     <div style="margin-left: 30%;">
                         <div>
@@ -50,7 +50,7 @@
                         <div>
                             <div>
                                 <div style="width: 25%; float: left; ">
-                                    <button class="btn-red" ng-click="">Submit</button>
+                                    <button class="btn-red" ng-click="submitRolePermission()">Submit</button>
                                 </div>
                                 <div style="width: 25%; float: left; ">
                                     <button class="btn-red" ng-click="populatePermissionList()">Reset</button>
