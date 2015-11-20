@@ -1,0 +1,94 @@
+<div class="Grid">
+
+    <div class="Grid-cell">
+        <div class="Grid Grid--gutters Grid--flexCells u-nested-full">
+            <div class="Grid-cell ">
+                <div class="card-flex">
+                    <form novalidate>
+                        <div class="filter-box">
+
+                            <div class="filter-box__form-element filter-box__form-element--loose">
+                                <label for="if-desc">NCOP Project ID</label>
+                                <br/>
+                                <div class="filter-box__if-desc">
+                                    <input ng-model="filter.ncopProjectId" class="filter-box__text-input" type="text" />
+                                </div>
+                            </div>
+
+                            <div class="filter-box__form-element filter-box__form-element--loose">
+                                <label for="start-date-time">Sales Project ID</label>
+                                <br/>
+                                <div class="filter-box__start-date-time">
+                                    <input ng-model="filter.salesProjectId" class="filter-box__text-input filter-box__text-input" type="text" />
+                                </div>
+                            </div>
+
+
+                            <div class="filter-box__form-element filter-box__form-element--loose">
+                                <label for="start-date-time">CRM ID</label>
+                                <br/>
+                                <div class="filter-box__start-date-time">
+                                    <input ng-model="filter.crmId" class="filter-box__text-input filter-box__text-input" type="text" />
+                                </div>
+                            </div>
+
+
+                            <div class="filter-box__form-element filter-box__form-element--loose">
+                                <label for="start-date-time">Customer Name</label>
+                                <br/>
+                                <div class="filter-box__start-date-time">
+                                    <input ng-model="filter.customerName" class="filter-box__text-input filter-box__text-input" type="text" />
+                                </div>
+                            </div>
+
+
+                            <div class="filter-box__form-element filter-box__form-element--loose">
+                                <label for="start-date-time">Partner Name</label>
+                                <br/>
+                                <div class="filter-box__start-date-time">
+                                    <input ng-model="filter.partnerName" class="filter-box__text-input filter-box__text-input" type="text" />
+                                </div>
+                            </div>
+
+                            <div class="filter-box__form-element filter-box__form-element--loose">
+                                <label for="empty"></label>
+                                <br/>
+                                <div class="filter-box__cta">
+                                    <button class="btn-red" ng-click="getData()">Search</button>
+                                </div>
+                            </div>
+
+                            <div class="filter-box__form-element filter-box__form-element--loose">
+                                <label for="empty"></label>
+                                <br/>
+                                <div class="filter-box__cta">
+                                    <a ng-click="resetFilters()">Reset</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="Grid Grid--gutters Grid--flexCells u-nested-full">
+            <div class="Grid-cell ">
+                <div class="card-flex">
+                    <div class="card-header">
+                        <!-- <h4>Customer Information</h4> -->
+                        <!-- <div class="card-expand"></div> -->
+                        <!-- <img src="img/expanding2.svg" class="card-handle" /> -->
+                    </div>
+                    <div class="clear"></div>
+                    <div class="card-content" cg-busy="{promise:gridDataPromise}">
+                        <div>
+                            <div ui-grid="gridOptions"  class="grid" ui-grid-resize-columns ui-grid-move-columns></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

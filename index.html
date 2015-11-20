@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MyApp</title>
+
+    <link rel="stylesheet" type="text/css" href="css/my-style.css">
+    <link rel="stylesheet" href="./css/ui-grid.css">
+    <link rel="stylesheet" href="./css/angular-busy.css">
+
+</head>
+
+<body ng-controller="mainController">
+    <div class="st-pusher">
+        <div class="st-content">
+            <div class="wrapper">
+                <div class="header">
+                    <div class="logo"><img class="logo-img" src="img/logo-white.png" /></div>
+                    <div class="app-name">My APP</div>
+                    <div class="utility-bar">
+                        <div class="profile">
+                            <div class="profile__picture"><img class="default-pic" src="img/profile5.svg"></div>
+                            <div>
+                                <div class="profile__name">{{fullname}}</div>
+                                <div class="profile__role">{{role}}</div>
+                            </div>
+                        </div>
+                        <div class="logout" ng-click="logout()"><img src="img/logout.png">
+                            <br/>Logout</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="navigation">
+                    <div class="nav-icon" ng-class="{navactive: $route.current.activetab == 'project-files'}"><a href="#project-files">PROJECT FILE</a></div>
+                    <div class="nav-icon" ng-class="{navactive: $route.current.activetab == 'app-perimission'}"><a href="#app-perimission">APP PERMISSION</a></div>
+                </div>
+                <div class="app">
+                    <div class="cardui" data-ng-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+<!-- Plugins -->
+<script src="js/lib/angular/angular.js"></script>
+<script src="js/lib/angular/angular-route.js"></script>
+<script src="js/lib/angular/angular-resource.js"></script>
+<script src="js/lib/angular/angular-animate.js"></script>
+<script src="js/lib/angular/angular-busy.js"></script>
+
+<script>
+    window.jQuery || document.write('<script src="js/lib/jquery-1.11.2.min.js"><\/script>')
+</script>
+
+<script src="./js/lib/data-grid/ui-grid.js"></script>
+
+<script src="js/lib/FileSaver.js"></script>
+
+<script src="js/main.js"></script>
+
+<!-- Controllers -->
+<script src="js/controllers/projectFilesControler.js"></script>
+<script src="js/controllers/appPermissionControler.js"></script>
+
+<!-- Factories -->
+<script src="js/factories/quoteUtilFactory.js"></script>
+<script src="js/factories/accountFactory.js"></script>
+
+<!-- Service -->
+<script src="js/service/serverConfigService.js"></script>
+<script src="js/service/notificationService.js"></script>
+<script src="js/service/commonService.js"></script>
+
+</html>

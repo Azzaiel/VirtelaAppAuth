@@ -1,0 +1,68 @@
+<div id="main" class="Grid">
+    <div id="mainGroup" class="Grid-cell">
+
+        <div class="Grid Grid--gutters Grid--flexCells u-nested-full">
+            <div class="Grid-cell ">
+                <div class="card-flex">
+
+                    <div class="card-header">
+                        <label for="app-filter">Application</label>
+                        <select id="app-filter" ng-model="filter.vapplication" ng-options="option.name for option in applicationLov track by option.id">
+                        </select>
+                        <button class="btn-red-s" ng-click="loadApplicationRoles()">GO</button>
+                        <img src="img/24px/add-item1.png" />
+                    </div>
+
+                    <div class="clear"></div>
+                    <div class="card-content" cg-busy="{promise:appRoleGridPromise}">
+                        <div ui-grid="appRoleGridOptions" class="grid" ui-grid-selection ui-grid-edit ui-grid-resize-columns ui-grid-move-columns></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="Grid Grid--gutters Grid--flexCells u-nested-full">
+            <div class="Grid-cell">
+                <div class="card-flex">
+                    <div style="margin-left: 30%;">
+                        <div>
+                            <div style="width: 20%; float: left;" cg-busy="{promise:appPermissionPromise}">
+                                <h4>All Permissions</h4>
+                                <input ng-model="filter.appPermission" style="width: 85%; " type="text" placeholder="Filter Content" />
+                                <img src="img/24px/add-item1.png" style="height: 20px" />
+                                <select multiple ng-dblclick="movePermissionToRole()" ng-model="appOpt.permission" data-ng-options="option.name for option in appPermissionLov track by option.id" class="filter-box__text-input" data-ng-change="checkStatus()">
+                                </select>
+                            </div>
+
+                            <div style="float: left; padding:60px;">
+                                <BR/>
+                            </div>
+
+                            <div style="width: 20%; float: left;" cg-busy="{promise:appPermissionPromise}">
+                                <h4>Role Permissions</h4>
+                                <input ng-model="filter.rolePermission" style="width: 85%;" type="text" placeholder="Filter Content" />
+                                <select multiple ng-dblclick="movePermissionToApp()" ng-model="roleOpt.permission" data-ng-options="option.name for option in rolePermissionLov track by option.id" class="filter-box__text-input" data-ng-change="checkStatus()">
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div>
+                                <div style="width: 25%; float: left; ">
+                                    <button class="btn-red" ng-click="">Submit</button>
+                                </div>
+                                <div style="width: 25%; float: left; ">
+                                    <button class="btn-red" ng-click="populatePermissionList()">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
