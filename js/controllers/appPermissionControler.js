@@ -94,14 +94,13 @@ myApp.controller('appPermissionControler', function ($scope, $filter, $route, ac
                 if (appPermission.data) {
                     $scope.appPermissionLov = commonService.removeFormArray(appPermission.data, $scope.rolePermissionLov);
                 }
-            });
+                $scope.rolePermissionPromise = accountFactory.getAppRolePermission($scope.filter.vapplication.id, roleSelected.id);
+                $scope.rolePermissionPromise.then(function (rolePermissions) {
+                    if (rolePermissions.data) {
+                        $scope.rolePermissionLov = rolePermissions.data;
 
-            $scope.rolePermissionPromise = accountFactory.getAppRolePermission($scope.filter.vapplication.id, roleSelected.id);
-            $scope.rolePermissionPromise.then(function (rolePermissions) {
-                if (rolePermissions.data) {
-                    $scope.rolePermissionLov = rolePermissions.data;
-
-                }
+                    }
+                });
             });
 
         }
